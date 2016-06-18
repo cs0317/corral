@@ -5,6 +5,8 @@ obj
 bin
 *.suo
 *.suo
+/cba.csproj.user
+/packages
 AddOns/FastAVN/FastAVN/bin
 AddOns/FastAVN/FastAVN/obj
 AddOns/AliasAnalysis/AliasAnalysis.v11.suo
