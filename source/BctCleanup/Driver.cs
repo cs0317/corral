@@ -160,21 +160,8 @@ namespace BctCleanup
                 return;
             }
 
-            // Find all initializers
             List<Cmd> newCmds = new List<Cmd>();
-            foreach (var decl in prog.TopLevelDeclarations)
-            {
-                var impl = decl as Implementation;
-                if (impl == null) continue;
-                if (impl.Name.EndsWith("cctor"))
-                {
-                    if (impl.InParams.Count == 0)
-                    {
-                        newCmds.Add(new CallCmd(Token.NoToken, impl.Name, new List<Expr>(), new List<IdentifierExpr>()));
-                    }
-                }
-            }
-          
+
             // Find relevant variables and constants
             GlobalVariable exceptionVariable = null;
             Constant nullConstant = null;
@@ -219,6 +206,20 @@ namespace BctCleanup
               List<Expr> rhss = new List<Expr>();
               rhss.Add(new LiteralExpr(Token.NoToken, Microsoft.Basetypes.BigNum.ZERO));
               newCmds.Add(new AssignCmd(Token.NoToken, lhss, rhss));
+            }
+
+            // Find all initializers
+            foreach (var decl in prog.TopLevelDeclarations)
+            {
+                var impl = decl as Implementation;
+                if (impl == null) continue;
+                if (impl.Name.EndsWith("cctor"))
+                {
+                    if (impl.InParams.Count == 0)
+                    {
+                        newCmds.Add(new CallCmd(Token.NoToken, impl.Name, new List<Expr>(), new List<IdentifierExpr>()));
+                    }
+                }
             }
 
             // Add call to all initializers in main
