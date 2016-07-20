@@ -254,7 +254,7 @@ namespace BctCleanup
 
         private static void processFlag(string flag)
         {
-            var split = flag.Split(':');
+            var split = flag.Split(new char[] { ':' }, 2);
             if (flag.StartsWith("/main:"))
             {
                 GlobalConfig.mainProc = split[1];

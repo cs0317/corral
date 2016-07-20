@@ -34,7 +34,7 @@ namespace cba
                     {
                         var delimit = new char[1];
                         delimit[0] = ':';
-                        var split = str.Split(delimit);
+                        var split = str.Split(delimit, 2);
                         try
                         {
                             ret.AddRange(readFile(split[1]));
@@ -111,14 +111,14 @@ namespace cba
 
                 if (line.StartsWith("/include:"))
                 {
-                    var split = line.Split(':');
+                    var split = line.Split(new char[] { ':' }, 2);
                     ret.Add("/include:" + path + split[1]);
                     continue;
                 }
 
                 if (line.StartsWith("/concat:"))
                 {
-                    var split = line.Split(':');
+                    var split = line.Split(new char[] { ':' }, 2);
                     ret.Add("/concat:" + path + split[1]);
                     continue;
                 }

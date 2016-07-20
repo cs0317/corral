@@ -357,12 +357,12 @@ namespace cba
 
             if (flag.StartsWith("/k:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 contextBound = Int32.Parse(split[1]);
             }
             else if (flag.StartsWith("/main:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 mainProcName = split[1];
             }
             else if (flag == "/trackAllVars")
@@ -371,17 +371,17 @@ namespace cba
             }
             else if (flag.StartsWith("/track:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 trackedVars.Add(split[1]);
             }
             else if (flag.StartsWith("/trackSecondary:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 trackedVarsSecondary.Add(split[1]);
             }
             else if (flag.StartsWith("/dislike:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 tryDroppingForRefinement.Add(split[1]);
             }
             else if (flag == "/unfoldRecursion")
@@ -390,7 +390,7 @@ namespace cba
             }
             else if (flag.StartsWith("/unfoldRecursion:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 unfoldRecursion = split[1];
             }
             else if (flag == "/dainst")
@@ -399,12 +399,12 @@ namespace cba
             }
             else if (flag.StartsWith("/dainst:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 daInst = split[1];
             }
             else if (flag.StartsWith("/ignoreAssertMethod:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 ignoreAssertMethods.Add(split[1]);
             }
             else if (flag.StartsWith("/include:"))
@@ -413,7 +413,7 @@ namespace cba
             }
             else if (flag.StartsWith("/concat:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 includeFiles.Add(split[1]);
             }
             else if (flag == "/staticInlining")
@@ -422,12 +422,12 @@ namespace cba
             }
             else if (flag.StartsWith("/irreducibleLoopUnroll:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 irreducibleLoopUnroll = Int32.Parse(split[1]);
             }
             else if (flag.StartsWith("/special"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 specialVars.Add(split[1]);
             }
             else if (flag == "/unifyMaps")
@@ -440,12 +440,12 @@ namespace cba
             }
             else if (flag.StartsWith("/set"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 extraFlags.Add(split[1]);
             }
             else if (flag.StartsWith("/killAfter:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 var timeout = Int32.Parse(split[1]);
                 var timeouttask = new System.Threading.Tasks.Task(() =>
                     {
@@ -457,22 +457,22 @@ namespace cba
             }
             else if (flag.StartsWith("/recursionBound:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 recursionBound = Int32.Parse(split[1]);
             }
             else if (flag.StartsWith("/timeLimit:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 timeout = Int32.Parse(split[1]);
             }
             else if (flag.StartsWith("/memLimit:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 memLimit = Int32.Parse(split[1]);
             }
             else if (flag.StartsWith("/houdiniTimeLimit:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 houdiniTimeout = Int32.Parse(split[1]);
             }
             else if (flag == "/fastRequiresInference")
@@ -485,7 +485,7 @@ namespace cba
             }
             else if (flag.StartsWith("/cex:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 NumCex = Int32.Parse(split[1]);
             }
             else if (flag == "/useArrayTheory")
@@ -510,12 +510,12 @@ namespace cba
             }
             else if (flag.StartsWith("/dumpCorralState:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 dumpCorralState = split[1];
             }
             else if (flag.StartsWith("/prevCorralState:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 prevCorralState = split[1];
             }
             else if (flag == "/printInstrumented")
@@ -528,7 +528,7 @@ namespace cba
             }
             else if (flag.StartsWith("/printFinalProg:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 printFinalProg = split[1];
             }
             else if (flag == "/printVerify")
@@ -537,7 +537,7 @@ namespace cba
             }
             else if (flag.StartsWith("/printDataValues:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 printData = Int32.Parse(split[1]);
             }
             else if (flag == "/printMemUsage")
@@ -550,7 +550,7 @@ namespace cba
             }
             else if (flag.StartsWith("/explainQuantifiers:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 explainQuantifiers = split[1];
             }
             else if (flag == "/printAllTraces")
@@ -560,7 +560,7 @@ namespace cba
             }
             else if (flag.StartsWith("/printInstrumented:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 printInstrumented = true;
                 instrumentedFile = split[1];
             }
@@ -570,7 +570,7 @@ namespace cba
             }
             else if (flag.StartsWith("/runHoudini:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 runHoudini = Int32.Parse(split[1]);
                 summaryComputation = false;
             }
@@ -585,7 +585,7 @@ namespace cba
             }
             else if (flag.StartsWith("/runAbsHoudini:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 runAbsHoudini = split[1];
             }
             else if (flag == "/computeSummary")
@@ -600,7 +600,7 @@ namespace cba
             }
             else if (flag.StartsWith("/maxStaticLoopBound:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 maxStaticLoopBound = Int32.Parse(split[1]);
             }
             else if (flag == "/useLocalVarAbs")
@@ -633,7 +633,7 @@ namespace cba
             }
             else if (flag.StartsWith("/printHoudiniQuery:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 houdiniQuery = split[1];
             }
             else if (flag == "/doNotUseLabels")
@@ -642,12 +642,12 @@ namespace cba
             }
             else if (flag.StartsWith("/v:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 verboseMode = Int32.Parse(split[1]);
             }
             else if (flag.StartsWith("/refinementAlgo:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 refinementAlgo = split[1];
                 if (refinementAlgo.Length != 4)
                 {
@@ -718,7 +718,7 @@ namespace cba
             else if (flag.StartsWith("/newStratifiedInlining:"))
             {
                 newStratifiedInlining = true;
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 newStratifiedInliningAlgo = split[1];
             }
             else if (flag == "/noArrayTheory")
@@ -735,7 +735,7 @@ namespace cba
             }
             else if (flag.StartsWith("/assertVar:"))
             {
-                var split = flag.Split(sep);
+                var split = flag.Split(sep, 2);
                 assertsPassed = split[1];
             }
             else if (flag == "/assertVarIsInt")

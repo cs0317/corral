@@ -232,7 +232,7 @@ namespace HavocCleanup
                 processFlag(args[i]);
                 if (args[i].StartsWith("/flags:"))
                 {
-                    var split = args[i].Split(':');
+                    var split = args[i].Split(new char[] { ':' }, 2);
                     var flags = readFile(split[1]);
                     foreach (var flag in flags)
                         processFlag(flag);
@@ -245,14 +245,14 @@ namespace HavocCleanup
         {
             if (isFlag(flag) && flag.StartsWith("/main:"))
             {
-                var split = flag.Split(':');
+                var split = flag.Split(new char[] { ':' }, 2);
                 GlobalConfig.mainProc = split[1];
             }
             
             if (isFlag(flag) && flag.StartsWith("/initializeHwsw:"))
             {
                 // overrides main proc name for Hwsw
-                var split = flag.Split(':');
+                var split = flag.Split(new char[] { ':' }, 2);
                 GlobalConfig.hwswInitProc = split[1];
             }
 
